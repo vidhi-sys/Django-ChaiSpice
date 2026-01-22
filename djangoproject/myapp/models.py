@@ -9,15 +9,11 @@ class ChaiType(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='chais/')
-    chai_type = models.CharField(
-        max_length=2,
-        choices=CHAI_TYPES
-    )
+    image = models.ImageField(upload_to='images/chaitypes')
+
+    chai_type = models.CharField(max_length=2, choices=CHAI_TYPES)
+    price = models.TextField()  # text price (₹20, Free, etc.)
     created_at = models.DateTimeField(default=timezone.now)
-    price = models.IntegerField(null=True, blank=True)
-
-
 
     def __str__(self):
         return self.name
