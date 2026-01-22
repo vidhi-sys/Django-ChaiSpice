@@ -1,0 +1,59 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% tailwind_css %}
+  <title>Chai Corner</title>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-[#e7bd85] to-[#4c310d] flex flex-col items-center">
+
+<!-- HERO -->
+<div class="mt-20 max-w-lg p-10 bg-[#D8993B]/90 rounded-2xl shadow-lg text-center">
+  <h1 class="text-5xl text-[#8B4513] mb-4">Chai Corner</h1>
+  <p class="italic text-[#A0522D] mb-6">Sip the warmth of tradition & spice</p>
+  <button class="px-8 py-3 bg-[#8B4513] text-white rounded-full">
+    Order Chai
+  </button>
+</div>
+
+<h2 class="mt-20 mb-10 text-4xl font-serif text-[#5C4033] flex items-center gap-3">
+  All Chai For You ☕
+</h2>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-6 max-w-6xl">
+  {% for chai in chais %}
+  <div class="bg-[#FFF8F0] rounded-2xl shadow-xl overflow-hidden hover:scale-[1.02] transition-transform">
+
+    <!-- Image -->
+    <img 
+      src="{{ chai.image.url }}" 
+      alt="{{ chai.name }}"
+      class="h-56 w-full object-cover"
+    >
+
+    <!-- Content -->
+    <div class="p-5 text-center">
+      <h3 class="text-2xl font-serif text-[#8B4513] mb-1">
+        {{ chai.name }}
+      </h3>
+
+      <p class="text-sm text-[#A0522D] tracking-wide uppercase">
+        {{ chai.get_chai_type_display }}
+      </p>
+
+      <button class="mt-4 px-6 py-2 bg-[#8B4513] text-white rounded-full hover:bg-[#A0522D] transition">
+        Order Now
+      </button>
+    </div>
+  </div>
+  {% empty %}
+  <p class="text-lg text-[#5C4033]">No chai added yet </p>
+  {% endfor %}
+</div>
+
+
+</body>
+</html>
